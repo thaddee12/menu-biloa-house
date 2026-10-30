@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#15432D"/><text x="50" y="64" text-anchor="middle" font-family="Georgia,serif" font-size="40" font-weight="600" fill="#D9BE8A">BH</text></svg></template>
+<x-dc>
+<helmet>
+<title>Menu | Biloa House</title>
+<link rel="icon" href="assets/biloa-logo.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF8F0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:#FBF8F0;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overscroll-behavior-x:none}
+button,a,[role=button]{touch-action:manipulation}
+[data-chiprow]::-webkit-scrollbar{display:none}
+a{color:#1E5B3E}
+a:hover{color:#15432D}
+</style>
+<script src="./image-slots-data.js"></script>
+<script src="./image-slot.js"></script>
+</helmet>
+<div style="width:100%;max-width:480px;margin:0 auto;box-sizing:border-box;min-height:100vh;min-height:100dvh;overflow-x:clip;background:#FBF8F0;color:#1B3A2A;font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.4">
+
+  <header ref="{{ headerRef }}" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:calc(24px + env(safe-area-inset-top)) 20px 18px">
+    <img ref="{{ logoRef }}" src="assets/biloa-logo.jpg" alt="Biloa House" style="width:132px;height:132px;object-fit:contain;mix-blend-mode:multiply;display:block">
+    <div style="font-size:11.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#6F6A5C;display:flex;gap:10px;align-items:center">
+      <span>Le son</span><span style="color:#B8924F">·</span><span>Le goût</span><span style="color:#B8924F">·</span><span>L'art</span>
+    </div>
+  </header>
+
+  <nav ref="{{ barRef }}" style="position:sticky;top:0;z-index:20;background:rgba(251,248,240,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #E4DCCB;border-top:1px solid #E4DCCB">
+    <div style="display:grid;grid-template-columns:repeat(4,auto)">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <button onClick="{{ t.select }}" style="appearance:none;background:none;border:0;border-bottom:2px solid {{ t.line }};margin-bottom:-1px;min-height:48px;padding:0 6px;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:{{ t.color }};cursor:pointer;transition:color .25s,border-color .25s">{{ t.label }}</button>
+      </sc-for>
+    </div>
+    <div ref="{{ chipRowRef }}" data-chiprow="1" style="display:flex;gap:8px;overflow-x:auto;padding:6px 16px 8px;scroll-padding:0 16px;scroll-snap-type:x proximity;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-top:1px solid #EFE8D9">
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="6">
+        <button data-chip="{{ c.id }}" onClick="{{ c.go }}" style="appearance:none;flex:none;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};border-radius:999px;min-height:44px;padding:0 16px;scroll-snap-align:start;font-family:inherit;font-size:14px;font-weight:500;white-space:nowrap;cursor:pointer;transition:background .25s,color .25s">{{ c.label }}</button>
+      </sc-for>
+    </div>
+  </nav>
+
+  <main ref="{{ contentRef }}" style="padding:24px 16px 8px">
+
+    <sc-if value="{{ isCafe }}" hint-placeholder-val="{{ true }}">
+      <div data-glow="1" style="background:#15432D;border:1px solid rgba(184,146,79,.5);border-radius:14px;padding:24px 20px;text-align:center;margin-bottom:40px;display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;line-height:1.1;color:#FFFFFF">Les Cafés du Monde</div>
+        <div style="font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#D9BE8A">notre coffee shop</div>
+        <div style="width:40px;height:1px;background:#B8924F;margin:8px 0 6px"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:20px;color:#F2ECDF">Au-delà du café, une expérience.</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBoutique }}" hint-placeholder-val="{{ false }}">
+      <div data-glow="1" style="background:#15432D;border:1px solid rgba(184,146,79,.5);border-radius:14px;padding:24px 22px;text-align:center;margin-bottom:40px;display:flex;flex-direction:column;align-items:center;gap:6px">
+        <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:28px;line-height:1.1;color:#FFFFFF">Le tour du monde en une tasse</div>
+        <div style="width:40px;height:1px;background:#B8924F;margin:8px 0 6px"></div>
+        <div style="font-size:14px;line-height:1.55;color:#F2ECDF;text-wrap:pretty">Nos cafés de spécialité sont sélectionnés dans les meilleures régions productrices. Dégustez-les sur place ou emportez-les en grains ou moulus.</div>
+      </div>
+    </sc-if>
+
+    <sc-for list="{{ sections }}" as="s" hint-placeholder-count="2">
+      <section id="{{ s.id }}" data-section="1" style="margin-bottom:48px">
+
+        <sc-if value="{{ s.hasBanner }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;height:180px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#1E5B3E,#B8924F);color:#FFFFFF;margin-bottom:20px">
+            <div data-kb="1" style="position:absolute;inset:0">
+              <image-slot id="{{ s.slot }}" shape="rect" placeholder="{{ s.photo }}"></image-slot>
+            </div>
+            <div style="position:absolute;left:0;right:0;bottom:0;height:65%;background:linear-gradient(to top,rgba(15,42,28,.85),rgba(15,42,28,0));pointer-events:none"></div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:16px;text-align:center">
+          <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:30px;line-height:1.05;color:#1E5B3E;text-wrap:balance">{{ s.title }}</h2>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="width:34px;height:1px;background:#B8924F"></span>
+            <span style="width:5px;height:5px;background:#B8924F;transform:rotate(45deg)"></span>
+            <span style="width:34px;height:1px;background:#B8924F"></span>
+          </div>
+          <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ false }}">
+            <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:#6F6A5C;max-width:320px;text-wrap:pretty">{{ s.note }}</div>
+          </sc-if>
+          <sc-if value="{{ s.dual }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:12.5px;line-height:1.5;color:#6F6A5C;max-width:330px;text-wrap:pretty"><strong style="color:#1B3A2A;font-weight:600">Maison</strong> : café du quotidien · <strong style="color:#B8924F;font-weight:600">Origine ✦</strong> : préparé avec un café de spécialité · « — » non proposé</div>
+          </sc-if>
+          <sc-if value="{{ s.hasLive }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:12.5px;line-height:1.5;color:#6F6A5C;max-width:330px;text-wrap:pretty"><strong style="color:#B8924F;font-weight:600">Soirée live</strong> : +500 F sur chaque bière les soirs de concert</div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{ s.isList }}" hint-placeholder-val="{{ true }}">
+          <div style="background:#FFFFFF;border:1px solid #E4DCCB;border-radius:14px;padding:0 16px;overflow:hidden">
+            <div style="margin-bottom:-1px">
+              <sc-if value="{{ s.dual }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;gap:6px;align-items:center;padding:12px 0 10px;border-bottom:1px solid #E4DCCB;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">
+                  <span style="flex:1"></span>
+                  <span style="flex:none;width:60px;text-align:right;white-space:nowrap;color:#6F6A5C">Maison</span>
+                  <span style="flex:none;width:66px;text-align:right;white-space:nowrap;color:#B8924F">Origine ✦</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ s.hasLive }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;gap:6px;align-items:center;padding:12px 0 10px;border-bottom:1px solid #E4DCCB;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase">
+                  <span style="flex:1"></span>
+                  <span style="flex:none;width:60px;text-align:right;white-space:nowrap;color:#6F6A5C">Prix</span>
+                  <span style="flex:none;width:66px;text-align:right;white-space:nowrap;color:#B8924F">Live ♪</span>
+                </div>
+              </sc-if>
+              <sc-for list="{{ s.priceGroups }}" as="pg" hint-placeholder-count="0">
+                <div data-reveal="1" style="display:flex;gap:6px;align-items:flex-start;padding:14px 0;border-bottom:1px dotted #CBBD9E">
+                  <div style="flex:1;min-width:0;padding-right:8px;font-size:14.5px;line-height:1.6;color:#1B3A2A;text-wrap:pretty">{{ pg.names }}</div>
+                  <div style="flex:none;min-width:60px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;color:#1B3A2A">{{ pg.price }}</div>
+                  <sc-if value="{{ pg.hasLive }}" hint-placeholder-val="{{ false }}">
+                    <div style="flex:none;width:66px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;color:#B8924F">{{ pg.livePrice }}</div>
+                  </sc-if>
+                </div>
+              </sc-for>
+              <sc-for list="{{ s.groups }}" as="g" hint-placeholder-count="1">
+                <sc-if value="{{ g.hasLabel }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:16px 0 4px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:19px;color:#B8924F">{{ g.label }}</div>
+                </sc-if>
+                <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="5">
+                  <div data-reveal="1" style="border-bottom:1px dotted #CBBD9E">
+                    <div role="button" tabindex="0" aria-expanded="{{ it.ariaExp }}" onClick="{{ it.open }}" style="display:flex;gap:6px;align-items:flex-start;min-height:48px;box-sizing:border-box;padding:14px 0;cursor:pointer;transition:opacity .15s" style-active="opacity:.6">
+                      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;padding-right:8px">
+                        <div style="font-size:15px;font-weight:500;color:#1B3A2A;text-wrap:pretty">{{ it.name }}</div>
+                        <sc-if value="{{ it.hasIng }}" hint-placeholder-val="{{ false }}">
+                          <div style="display:flex;flex-wrap:wrap;gap:4px">
+                            <sc-for list="{{ it.ing }}" as="p" hint-placeholder-count="3">
+                              <span style="background:#EEF3EE;color:#1E5B3E;font-size:11.5px;line-height:1.3;border-radius:999px;padding:3px 8px">{{ p }}</span>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                      <sc-if value="{{ it.single }}" hint-placeholder-val="{{ true }}">
+                        <div style="flex:none;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;color:#1B3A2A">{{ it.price }}<sc-if value="{{ it.mark }}" hint-placeholder-val="{{ false }}"><span style="color:#B8924F;margin-left:2px">*</span></sc-if></div>
+                      </sc-if>
+                      <sc-if value="{{ it.dual }}" hint-placeholder-val="{{ false }}">
+                        <div style="flex:none;width:60px;text-align:right;font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap;color:#1B3A2A">{{ it.maison }}</div>
+                        <div style="flex:none;width:66px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap;color:#B8924F">{{ it.origine }}</div>
+                      </sc-if>
+                    </div>
+                    <sc-if value="{{ it.expanded }}" hint-placeholder-val="{{ false }}">
+                      <div data-panel="1" style="overflow:hidden">
+                        <div style="display:flex;flex-direction:column;gap:14px;padding:2px 0 18px">
+                          <div style="position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#1E5B3E,#B8924F);color:#FFFFFF">
+                            <image-slot id="{{ it.d.slot }}" shape="rect" placeholder="{{ it.d.photoLabel }}"></image-slot>
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:8px">
+                            <div style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B8924F">Composition</div>
+                            <sc-if value="{{ it.d.hasCompo }}" hint-placeholder-val="{{ true }}">
+                              <div style="display:flex;flex-wrap:wrap;gap:5px">
+                                <sc-for list="{{ it.d.compo }}" as="p" hint-placeholder-count="3">
+                                  <span style="background:#EEF3EE;color:#1E5B3E;font-size:12.5px;line-height:1.3;border-radius:999px;padding:4px 10px">{{ p }}</span>
+                                </sc-for>
+                              </div>
+                            </sc-if>
+                            <sc-if value="{{ it.d.noCompo }}" hint-placeholder-val="{{ false }}">
+                              <div style="font-size:14px;color:#6F6A5C">Composition à fournir</div>
+                            </sc-if>
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:6px">
+                            <div style="font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B8924F">Présentation</div>
+                            <div style="font-size:14.5px;line-height:1.5;color:#1B3A2A;text-wrap:pretty">{{ it.d.serve }}</div>
+                          </div>
+                          <sc-if value="{{ it.d.showDraft }}" hint-placeholder-val="{{ false }}">
+                            <div style="font-size:12px;color:#6F6A5C;background:#F2ECDF;border-radius:10px;padding:8px 12px">Composition et présentation indicatives, à valider avec Biloa House.</div>
+                          </sc-if>
+                        </div>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s.isOrigins }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ origins }}" as="o" hint-placeholder-count="2">
+              <article data-reveal="1" style="background:#FFFFFF;border:1px solid #E4DCCB;border-radius:14px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:14px">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+                  <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;line-height:1;color:#1E5B3E">{{ o.name }}</h3>
+                  <sc-if value="{{ o.isBio }}" hint-placeholder-val="{{ false }}">
+                    <span style="flex:none;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:#1E5B3E;color:#FFFFFF;border-radius:999px;padding:5px 10px">{{ o.badge }}</span>
+                  </sc-if>
+                  <sc-if value="{{ o.notBio }}" hint-placeholder-val="{{ true }}">
+                    <span style="flex:none;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid #B8924F;color:#8A6A33;border-radius:999px;padding:4px 10px">{{ o.badge }}</span>
+                  </sc-if>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px">
+                  <sc-for list="{{ o.notes }}" as="p" hint-placeholder-count="4">
+                    <span style="background:#EEF3EE;color:#1E5B3E;font-size:11.5px;line-height:1.3;border-radius:999px;padding:3px 8px">{{ p }}</span>
+                  </sc-for>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:9px">
+                  <sc-for list="{{ o.gauges }}" as="gg" hint-placeholder-count="3">
+                    <div style="display:grid;grid-template-columns:72px minmax(0,1fr) 30px;align-items:center;gap:10px">
+                      <span style="font-size:12px;font-weight:500;color:#6F6A5C">{{ gg.label }}</span>
+                      <span style="height:6px;border-radius:3px;background:#F2ECDF;overflow:hidden;display:block">
+                        <span data-gauge="1" data-pct="{{ gg.pct }}" style="display:block;height:100%;width:{{ gg.pct }};border-radius:3px;background:linear-gradient(90deg,#1E5B3E,#B8924F)"></span>
+                      </span>
+                      <span style="font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;text-align:right;color:#1B3A2A">{{ gg.val }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.35;color:#1B3A2A;text-wrap:pretty">{{ o.desc }}</p>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #E4DCCB;padding-top:14px">
+                  <span style="font-size:12.5px;color:#6F6A5C">Grains ou moulu · prix à définir</span>
+                  <a href="{{ o.wa }}" target="_blank" rel="noopener" style="flex:none;background:#1E5B3E;color:#FFFFFF;text-decoration:none;font-size:13px;font-weight:600;border-radius:12px;padding:10px 16px;min-height:44px;box-sizing:border-box;display:flex;align-items:center" style-hover="background:#15432D;color:#FFFFFF">Commander</a>
+                </div>
+              </article>
+            </sc-for>
+            <div data-reveal="1" style="display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:12px">
+              <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6F6A5C">Également disponibles</div>
+              <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px">
+                <sc-for list="{{ alsoAvailable }}" as="p" hint-placeholder-count="5">
+                  <span style="background:#F2ECDF;border:1px solid #E4DCCB;color:#1B3A2A;font-size:13px;border-radius:999px;padding:6px 12px">{{ p }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s.isAccessories }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+            <sc-for list="{{ accessories }}" as="a" hint-placeholder-count="4">
+              <div data-reveal="1" style="background:#FFFFFF;border:1px solid #E4DCCB;border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+                <div style="aspect-ratio:1/1;position:relative;background:linear-gradient(135deg,#F2ECDF,#E4DCCB);color:#6F6A5C">
+                  <image-slot id="{{ a.slot }}" shape="rect" placeholder="Photo produit"></image-slot>
+                </div>
+                <div style="padding:12px 12px 14px;display:flex;flex-direction:column;gap:3px">
+                  <div style="font-size:14px;font-weight:500;color:#1B3A2A">{{ a.name }}</div>
+                  <div style="font-size:12.5px;color:#6F6A5C">Prix à définir</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s.isEvents }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ events }}" as="ev" hint-placeholder-count="3">
+              <article data-reveal="1" style="position:relative;min-height:168px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#1E5B3E,#B8924F);color:#FFFFFF;border:1px solid {{ ev.border }};display:flex">
+                <div data-kb="1" style="position:absolute;inset:0">
+                  <image-slot id="{{ ev.slot }}" shape="rect" placeholder="{{ ev.photo }}"></image-slot>
+                </div>
+                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,42,28,.92) 0%,rgba(15,42,28,.55) 55%,rgba(15,42,28,.15) 100%);pointer-events:none"></div>
+                <div style="position:relative;flex:1;display:flex;gap:14px;align-items:flex-end;padding:16px;pointer-events:none">
+                  <div style="flex:none;width:60px;height:60px;border-radius:12px;background:rgba(251,248,240,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+                    <span style="font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8A6A33">Chaque</span>
+                    <span style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;line-height:1;color:#15432D">{{ ev.dayShort }}</span>
+                  </div>
+                  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+                    <sc-if value="{{ ev.isToday }}" hint-placeholder-val="{{ false }}">
+                      <span style="align-self:flex-start;font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF;background:#B8924F;border-radius:999px;padding:3px 9px">{{ ev.todayLabel }}</span>
+                    </sc-if>
+                    <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;line-height:1.05;color:#FFFFFF;text-wrap:balance">{{ ev.title }}</h3>
+                    <div style="font-size:13px;font-weight:600;color:#D9BE8A">{{ ev.when }}</div>
+                    <sc-if value="{{ ev.hasDesc }}" hint-placeholder-val="{{ false }}">
+                      <div style="font-size:14px;line-height:1.45;color:#FFFFFF;text-wrap:pretty">{{ ev.desc }}</div>
+                    </sc-if>
+                  </div>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ s.isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px dashed #CBBD9E;border-radius:14px;padding:32px 20px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:#6F6A5C">Carte des plats à intégrer</div>
+        </sc-if>
+
+      </section>
+    </sc-for>
+  </main>
+
+  <footer style="background:#15432D;color:#F2ECDF;padding:36px 24px calc(40px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;border-radius:20px 20px 0 0">
+    <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#FFFFFF">Biloa House · Le son · Le goût · L'art</div>
+    <div style="width:40px;height:1px;background:#B8924F"></div>
+    <div style="font-size:13px;color:#D9BE8A;letter-spacing:.06em">Prix en F CFA</div>
+    <sc-if value="{{ showMarks }}" hint-placeholder-val="{{ true }}">
+      <div style="font-size:12px;color:#CFC6B2">* Prix à confirmer</div>
+    </sc-if>
+    <a href="{{ waHref }}" target="_blank" rel="noopener" style="margin-top:8px;background:#FBF8F0;color:#15432D;text-decoration:none;font-size:14px;font-weight:600;border-radius:12px;padding:12px 22px;min-height:44px;box-sizing:border-box;display:flex;align-items:center" style-hover="background:#FFFFFF;color:#15432D">Nous écrire sur WhatsApp</a>
+    <div style="font-size:13px;color:#CFC6B2">{{ address }}</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;address&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Yaoundé · Adresse à fournir&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;},&quot;showConfirmMarks&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Démo&quot;},&quot;showDraftNote&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Démo&quot;},&quot;defaultTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;resto&quot;,&quot;cafe&quot;,&quot;boutique&quot;,&quot;infos&quot;],&quot;default&quot;:&quot;resto&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Démo&quot;}}">
+const fmt = n => typeof n === 'number' ? n.toLocaleString('fr-FR').replace(/[\u202f\u00a0\s]/g, '\u00a0') + '\u00a0F' : n;
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const L = arr => arr.map(([name, price, ing, confirm]) => ({ name, price, ing: ing ? ing.split(', ').map((x, i) => i ? x : cap(x)) : [], confirm: !!confirm }));
+const D = arr => arr.map(([name, maison, origine]) => ({ name, maison, origine, dual: true }));
+
+const TABS = [
+  { id: 'resto', label: 'Restaurant' },
+  { id: 'cafe', label: 'Café' },
+  { id: 'boutique', label: 'Boutique' },
+  { id: 'infos', label: 'Infos' }
+];
+
+const EVENTS = [
+  { day: 2, dayShort: 'Mar.', photo: 'Cocktails colorés sur le bar, lumière tamisée', title: 'Happy hour', when: 'Tous les mardis', desc: '2 cocktails achetés, 1 offert.' },
+  { day: 3, dayShort: 'Mer.', photo: 'Match sur grand écran, bières en premier plan', title: 'Spécial Champions League', when: 'Tous les mercredis', desc: '3 bières achetées, 1 offerte.' },
+  { day: 4, dayShort: 'Jeu.', photo: 'Micro sur scène, lumières colorées', title: 'Karaoké', when: 'Jeudi · de 20h à 23h', desc: '' },
+  { day: 5, dayShort: 'Ven.', photo: 'Saxophoniste sur scène, ambiance club de jazz', title: 'Live jazz', when: 'Vendredi · à partir de 19h', desc: '' }
+];
+
+const DATA = {
+  infos: [
+    { id: 'i-events', chip: 'Événements', title: 'Nos événements', note: 'Les rendez-vous de la semaine au Biloa House.', kind: 'events' }
+  ],
+  cafe: [
+    { id: 'c-chaudes', chip: 'Chaudes', title: 'Boissons chaudes', photo: 'Espresso et cappuccino avec latte art', dual: true, items: D([
+      ['Ristretto', 1000, 2000], ['Café noir', 1000, 2000], ['Espresso', 1000, 2000], ['Double espresso', 1500, 2500],
+      ['Allongé', 1500, 2500], ['Americano', 2000, 3000], ['Espresso macchiato', 1500, 2500], ['Latte macchiato', 1500, 2500],
+      ['Latte macchiato vanille', null, 3000], ['Mocha café chaud', 2000, 3000], ['Mochaccino', 1500, 2500],
+      ['Cappuccino', 2500, null], ['Cappuccino vanille', 3000, null], ['Chocolat chaud', 2000, null]]) },
+    { id: 'c-glacees', chip: 'Glacées', title: 'Boissons glacées', photo: 'Café caramel glacé, verre haut, glaçons, chantilly', dual: true, items: D([
+      ['Café frappé', 2000, 3000], ['Mocha glacé au chocolat', 2500, 3500], ['Café latte glacé', null, 3000],
+      ['Café noir glacé', null, 3000], ['Café noir glacé au lait', 2500, 3500], ['Café filtre glacé', 1500, 3000],
+      ['Café filtre glacé au lait', 1500, 3500], ['Café caramel glacé', 2500, 3500], ['Chocolat aux glaçons', 2500, null]]) },
+    { id: 'c-alcool', chip: 'Alcoolisés', title: 'Cafés alcoolisés', photo: 'Irish coffee, rhum et gingembre à côté', items: L([
+      ['Cappuccino Baileys', 3500], ['Irish coffee', 3500], ['Café rhum', 2500], ['Café gingembre', 2500], ['Cappuccino gingembre', 2500]]) },
+    { id: 'c-smoothies', chip: 'Smoothies', title: 'Smoothies', photo: 'Smoothies mangue, ananas, pastèque, fruits frais autour', items: L([
+      ['Banane', 2000, '', 1], ['Ananas', 2000, '', 1], ['Pastèque', 2000, '', 1], ['Mangue', 2000, '', 1], ['Multifruits', 2500, '', 1]]) },
+    { id: 'c-jus', chip: 'Jus', title: 'Jus naturels', items: L([['Orange', 2000], ['Ananas', 2000], ['Pastèque', 2000]]) },
+    { id: 'c-petitdej', chip: 'Petit-déjeuner', title: 'Petit-déjeuner', photo: 'Œuf, pain, beurre, confiture, salade de fruits, jus d\u2019orange, café', items: L([
+      ['Complet', 4000, 'œuf, pain, beurre ou confiture, salade de fruits ou jus naturel, café'],
+      ['Simple', 2500, 'café, croissant ou pain au chocolat, jus naturel']]) },
+    { id: 'c-crepes', chip: 'Crêpes', title: 'Crêpes', photo: 'Crêpe Nutella et crêpe jambon', items: L([['Nature', 1000], ['Nutella', 1500], ['Jambon', 1500]]) },
+    { id: 'c-omelettes', chip: 'Omelettes', title: 'Omelettes', items: L([['Nature', 1500], ['Garnie', 2000, 'sardine, saucisson…']]) },
+    { id: 'c-salades', chip: 'Salades', title: 'Salades', photo: 'Salade niçoise et salade d\u2019avocat', items: L([['Crudités', 1500], ['Avocat', 2500], ['Niçoise', 3000]]) }
+  ],
+  boutique: [
+    { id: 'b-origines', chip: 'Nos origines', title: 'Nos origines', photo: 'Grains torréfiés en sachets kraft, cerises de café', kind: 'origins' },
+    { id: 'b-accessoires', chip: 'Tasses & accessoires', title: 'Tasses & accessoires', photo: 'Tasses espresso, cafetière italienne, moulin manuel, filtre V60', kind: 'accessories' }
+  ],
+  resto: [
+    { id: 'r-chocolats', chip: 'Chocolats & cafés', title: 'Chocolats & cafés', photo: 'Chocolat chaud chantilly, cacao, morceaux de chocolat', groups: [
+      { label: 'Nos chocolats', items: L([['Chocolat chaud à l\u2019ancienne', 3000], ['Chocolat viennois', 3000, 'chocolat chaud, crème fouettée', 1],
+        ['Chocolat viennois caramel ou chocolat', 3500], ['Choco\u2019rhum', 4000, 'chocolat chaud, rhum']]) },
+      { label: 'Nos cafés', items: L([['Café allongé', 1000], ['Café serré', 1500], ['Café latte', 1500], ['Café viennois', 2000], ['Café viennois caramel ou chocolat', 2000]]) }] },
+    { id: 'r-thes', chip: 'Thés Fauchon', title: 'Thés Fauchon', note: 'Thés d\u2019exception de la maison parisienne Fauchon.', photo: 'Théière, tasse en verre, feuilles de thé, pétales de rose, zestes', groups: [
+      { label: 'Thés verts', items: L([
+        ['Citron & gingembre', 2500, 'thé vert de Chine, gingembre, citronnelle, écorces de citron'],
+        ['Vert mélange Fauchon', 2500, 'agrumes, vanille, lavande, pétales de rose'],
+        ['Earl Grey vert', 2500, 'bergamote, citronnelle, rose'],
+        ['Gyokuro', 2500, 'thé vert du Japon, arômes lactés, acidulés']]) },
+      { label: 'Thés noirs', items: L([
+        ['Ceylan Pettigalla', 2500, 'Sri Lanka, aromatique, fleuri'], ['Grand Yunnan', 2500, 'Chine, pointe épicée'],
+        ['Pêche', 2500, 'notes sucrées de pêche blanche'], ['Rose', 2500], ['Abricot', 2500], ['Poire', 2500],
+        ['Pomme', 2500, 'pomme rouge confite, caramélisée'], ['Earl Grey aux bleuets', 2500, 'Afrique du Sud, bergamote, pétales de bleuet'],
+        ['Un soir de Noël', 2500, 'caramel, vanille, ananas, orange, cerise'], ['Chai', 2500, 'thé noir indien, sept épices'],
+        ['Siva', 2500, 'Assam, Ceylan, Darjeeling, idéal au réveil']]) }] },
+    { id: 'r-sansalcool', chip: 'Sans alcool', title: 'Cocktails sans alcool', note: 'Purs jus naturels, sans additifs ni eau.', photo: 'Limonade menthe, pastèque menthe, jus tropical', items: L([
+      ['Jus naturel de saison', 2000], ['Lait glacé au sirop de menthe', 2500], ['Limonade fraîche', 2500, 'citron, eau minérale'],
+      ['Citron crush', 2500, 'limonade, citron, menthe'], ['Orange, ananas, gingembre', 2500], ['Délice tropical', 3000, 'orange, ananas, pomme'],
+      ['Pastèque menthe', 2500], ['Pomme gingembre', 3000], ['Milkshake banane miel', 3000, '', 1]]) },
+    { id: 'r-softs', chip: 'Softs', title: 'Softs', items: L([['Petit jus', 800], ['Grand jus', 1000], ['Malta Guinness', 1000], ['Tangui 1,5 L', 1000]]) },
+    { id: 'r-cocktails', chip: 'Cocktails', title: 'Cocktails', note: 'Nos glaçons sont à l\u2019eau minérale.', photo: 'Mojito, piña colada, cocktail bleu, saxophone flou au fond', items: L([
+      ['Mojito', 3500, 'rhum, citron, menthe, limonade'], ['Vodka citron', 3500], ['Piña colada', 3500, 'rhum, Malibu, ananas, coco'],
+      ['Caipiroska pastèque', 3500], ['Whisky orange ou cola', 3500], ['Margarita ananas menthe', 4000],
+      ['Campari lady', 4000, 'Campari, gin, pamplemousse ou tonic'], ['Manhattan', 4000, 'whisky, Martini rouge'],
+      ['Vin chaud', 4000, 'vin rouge, orange, citron, épices'], ['L\u2019Ange bleu', 4500, 'gin, rhum, curaçao, citron, limonade']]) },
+    { id: 'r-digestifs', chip: 'Digestifs', title: 'Digestifs', items: L([['Manzana', 2000, 'liqueur de pomme'], ['Cognac', 3000], ['Cognac Otard', 5000]]) },
+    { id: 'r-bieres', chip: 'Bières', title: 'Bières', photo: 'Bière pression mousseuse, bouteilles sans étiquette, scène floue', live: true, priceGroups: [
+      { price: 1500, names: ['Castel', 'Mutzig', '33 Export', 'Beaufort', 'Beaufort Light', 'Beaufort Tango', 'Ice', 'Ice Black', 'Guinness PM', 'Amstel', 'Smooth', 'Isenbeck', 'Booster', 'Manyan', 'Dopel', 'Kadji', 'Origin'] },
+      { price: 2000, names: ['1664', 'Red Bull', 'Guinness GM', 'Heineken PM / canette'] },
+      { price: 3000, names: ['Heineken GM'] }] },
+    { id: 'r-bouteilles', chip: 'Bouteilles', title: 'Bouteilles', priceGroups: [
+      { price: 25000, names: ['Martini rouge ou blanc', 'Campari', 'Gin', 'Clan Campbell', 'Ballantine\u2019s', 'Smirnoff', 'Grant\u2019s', 'J&B', 'Johnnie Walker Red', 'Baileys'] }],
+      items: L([['Tequila', 30000], ['Jack Daniel\u2019s', 40000, '', 1], ['Johnnie Walker Black', 40000], ['Chivas', 45000]]) },
+    { id: 'r-champagne', chip: 'Champagne', title: 'Champagne', items: L([
+      ['Coupe', 'Sur demande', '', 1], ['Kir royal', 'Sur demande', 'champagne, crème de cassis', 1],
+      ['Moët & Chandon 75 cl', 'Sur demande', '', 1], ['Laurent-Perrier 75 cl', 'Sur demande', '', 1]]) },
+    { id: 'r-cuisine', chip: 'Cuisine', title: 'Cuisine', kind: 'empty' }
+  ]
+};
+
+const ORIGINS = [
+  { name: 'Brésil', badge: 'Doux', notes: 'Chocolat au lait, caramel, noisette, vanille', g: [4, 1, 2.5], desc: 'Rond, généreux et velouté.' },
+  { name: 'Honduras', badge: 'Bio', notes: 'Fruits rouges, agrumes, chocolat noir, sucre de canne', g: [4, 3.5, 3.5], desc: 'Rond, dense et soyeux. Torréfaction robe de moine.' },
+  { name: 'Pérou', badge: 'Bio', notes: 'Noisette, amande grillée, caramel, vanille', g: [2.5, 2.5, 2.5], desc: 'Texture fluide et soyeuse, acidité fine type pomme verte.' },
+  { name: 'Costa Rica', badge: 'Intense', notes: 'Fruits tropicaux, miel, chocolat noir, jasmin', g: [3, 4, 4], desc: 'Limpide et rond, très longue persistance en bouche.' },
+  { name: 'Mélange Gourmet', badge: 'Bio', notes: 'Noisette, caramel, chocolat', g: [3, 2, 3], desc: 'Assemblage Mexique, Honduras et Colombie.' }
+];
+const COMPO = {
+  'Ristretto': 'espresso court et concentré', 'Café noir': 'café filtre, servi noir', 'Espresso': 'café expresso',
+  'Double espresso': 'deux doses d\u2019espresso', 'Allongé': 'espresso, eau chaude', 'Americano': 'double espresso, eau chaude',
+  'Espresso macchiato': 'espresso, nuage de mousse de lait', 'Latte macchiato': 'lait chaud, mousse de lait, espresso',
+  'Latte macchiato vanille': 'lait chaud, mousse de lait, espresso, sirop de vanille', 'Mocha café chaud': 'espresso, chocolat, lait chaud',
+  'Mochaccino': 'espresso, chocolat, lait moussé', 'Cappuccino': 'espresso, lait chaud, mousse de lait',
+  'Cappuccino vanille': 'espresso, lait chaud, mousse de lait, sirop de vanille', 'Chocolat chaud': 'chocolat, lait chaud',
+  'Café frappé': 'café, lait, sucre, glaçons', 'Mocha glacé au chocolat': 'espresso, chocolat, lait froid, glaçons',
+  'Café latte glacé': 'espresso, lait froid, glaçons', 'Café noir glacé': 'café, glaçons', 'Café noir glacé au lait': 'café, lait, glaçons',
+  'Café filtre glacé': 'café filtre, glaçons', 'Café filtre glacé au lait': 'café filtre, lait, glaçons',
+  'Café caramel glacé': 'espresso, caramel, lait froid, glaçons, chantilly', 'Chocolat aux glaçons': 'chocolat, lait froid, glaçons',
+  'Cappuccino Baileys': 'espresso, lait moussé, Baileys', 'Irish coffee': 'café, whisky irlandais, sucre, crème',
+  'Café rhum': 'café, rhum', 'Café gingembre': 'café, gingembre', 'Cappuccino gingembre': 'espresso, lait moussé, gingembre',
+  'c-smoothies:Banane': 'banane, lait', 'c-smoothies:Ananas': 'ananas', 'c-smoothies:Pastèque': 'pastèque', 'c-smoothies:Mangue': 'mangue',
+  'Multifruits': 'fruits de saison', 'c-jus:Orange': 'orange pressée', 'c-jus:Ananas': 'ananas pressé', 'c-jus:Pastèque': 'pastèque pressée',
+  'c-crepes:Nature': 'crêpe, sucre', 'c-crepes:Nutella': 'crêpe, Nutella', 'c-crepes:Jambon': 'crêpe, jambon',
+  'c-omelettes:Nature': 'œufs', 'Crudités': 'crudités de saison', 'Avocat': 'avocat, tomate, oignon, vinaigrette',
+  'Niçoise': 'thon, œuf, tomate, olives, haricots verts', 'Café allongé': 'espresso, eau chaude', 'Café serré': 'espresso serré',
+  'Café latte': 'espresso, lait chaud', 'Café viennois': 'café, crème fouettée', 'Café viennois caramel ou chocolat': 'café, crème fouettée, caramel ou chocolat',
+  'Chocolat chaud à l\u2019ancienne': 'chocolat fondu, lait chaud', 'Chocolat viennois caramel ou chocolat': 'chocolat chaud, crème fouettée, caramel ou chocolat',
+  'Pastèque menthe': 'pastèque, menthe', 'Pomme gingembre': 'pomme, gingembre', 'Milkshake banane miel': 'banane, miel, lait, glace',
+  'Lait glacé au sirop de menthe': 'lait froid, sirop de menthe, glaçons', 'Orange, ananas, gingembre': 'orange, ananas, gingembre',
+  'Vodka citron': 'vodka, citron', 'Caipiroska pastèque': 'vodka, pastèque, citron vert, sucre', 'Whisky orange ou cola': 'whisky, orange ou cola',
+  'Margarita ananas menthe': 'tequila, triple sec, ananas, menthe'
+};
+const SERVE = {
+  'c-chaudes': 'Servi chaud, en tasse.', 'c-glacees': 'Servi frais en verre haut, sur glaçons.', 'c-alcool': 'Servi chaud, en tasse ou verre à café.',
+  'c-smoothies': 'Mixé minute, servi frais en verre.', 'c-jus': 'Pressé minute, servi frais en verre.', 'c-petitdej': 'Servi sur plateau.',
+  'c-crepes': 'Servie chaude, à l\u2019assiette.', 'c-omelettes': 'Servie chaude, à l\u2019assiette.', 'c-salades': 'Servie fraîche, à l\u2019assiette.',
+  'r-chocolats': 'Servi chaud, en tasse.', 'r-thes': 'Servi en théière, avec sa tasse.', 'r-sansalcool': 'Servi frais, en verre.',
+  'r-softs': 'Servi frais, en bouteille.', 'r-cocktails': 'Servi en verre, glaçons à l\u2019eau minérale.', 'r-digestifs': 'Servi au verre.',
+  'r-bouteilles': 'Bouteille entière.', 'r-champagne': 'Servi frais.'
+};
+const slug = x => x.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const ALSO = ['Italie', 'France', 'Éthiopie', 'Colombie bio', 'Mexique bio'];
+const ACCESSORIES = ['Tasse espresso', 'Mug signature', 'Cafetière italienne', 'Moulin manuel', 'Filtre V60', 'Coffret découverte'];
+
+class Component extends DCLogic {
+  headerRef = React.createRef();
+  logoRef = React.createRef();
+  barRef = React.createRef();
+  chipRowRef = React.createRef();
+  contentRef = React.createRef();
+  state = { tab: this.props.defaultTab ?? 'resto', live: false, active: null, detail: null };
+
+  openDetail(sid, gi, ii, row) {
+    const cur = this.state.detail;
+    const same = cur && cur.sid === sid && cur.gi === gi && cur.ii === ii;
+    const p = this.contentRef.current && this.contentRef.current.querySelector('[data-panel]');
+    if (same) {
+      if (this.rm || !p) return this.setState({ detail: null });
+      if (this.closing) return;
+      this.closing = true;
+      const h = p.offsetHeight;
+      const inner = p.firstElementChild;
+      inner && inner.animate([{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-8px)' }], { duration: 220, fill: 'forwards' });
+      p.animate([{ height: h + 'px' }, { height: '0px' }], { duration: 320, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' })
+        .finished.then(() => { this.closing = false; this.setState({ detail: null }); });
+      return;
+    }
+    const before = row ? row.getBoundingClientRect().top : null;
+    this.setState({ detail: { sid, gi, ii } }, () => {
+      if (row && before != null) {
+        const shift = row.getBoundingClientRect().top - before;
+        if (Math.abs(shift) > 1) window.scrollBy(0, shift);
+      }
+      this.animateOpen(row);
+    });
+  }
+
+  revealPanel(row, h) {
+    if (!row) return;
+    const r = row.getBoundingClientRect();
+    const bottom = r.bottom + h + 16;
+    const over = bottom - window.innerHeight;
+    if (over <= 0) return;
+    const maxUp = r.top - this.barH() - 12;
+    const dy = Math.min(over, Math.max(0, maxUp));
+    if (dy > 0) window.scrollBy({ top: dy, behavior: this.rm ? 'auto' : 'smooth' });
+  }
+
+  animateOpen(row) {
+    const run = () => {
+      const p = this.contentRef.current && this.contentRef.current.querySelector('[data-panel]');
+      if (!p) return;
+      const h = p.scrollHeight;
+      this.revealPanel(row, h);
+      if (this.rm) return;
+      p.animate([{ height: '0px' }, { height: h + 'px' }], { duration: 480, easing: 'cubic-bezier(.22,.8,.3,1)' });
+      const inner = p.firstElementChild;
+      inner && inner.animate([{ opacity: 0, transform: 'translateY(-10px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 420, delay: 120, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'backwards' });
+      const img = p.querySelector('image-slot');
+      img && img.animate([{ transform: 'scale(1.08)' }, { transform: 'scale(1)' }], { duration: 1400, easing: 'cubic-bezier(.2,.6,.3,1)' });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(run));
+  }
+
+  componentDidMount() {
+    this.lastTab = this.state.tab;
+    this.rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!this.rm && this.logoRef.current) {
+      this.logoRef.current.animate([
+        { opacity: 0, transform: 'scale(.6) rotate(-14deg)' },
+        { opacity: 1, transform: 'scale(1.07) rotate(3deg)', offset: .62 },
+        { opacity: 1, transform: 'scale(1) rotate(0deg)' }
+      ], { duration: 900, easing: 'cubic-bezier(.3,.8,.4,1)', fill: 'backwards' });
+    }
+    if ('IntersectionObserver' in window) {
+      this.io = new IntersectionObserver(this.onIntersect, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    }
+    this.onScroll = () => {
+      if (this.raf) return;
+      this.raf = requestAnimationFrame(() => { this.raf = null; this.spy(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    requestAnimationFrame(() => this.setupMotion(true));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    this.io && this.io.disconnect();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.defaultTab !== this.props.defaultTab && this.props.defaultTab) this.setTab(this.props.defaultTab);
+    // prevState n'est pas fourni hors de Claude Design : on suit l'onglet nous-mêmes.
+    if (this.lastTab !== this.state.tab) {
+      this.lastTab = this.state.tab;
+      requestAnimationFrame(() => {
+        const top = this.contentTop();
+        if (window.scrollY > top) window.scrollTo({ top, behavior: 'auto' });
+        if (this.chipRowRef.current) this.chipRowRef.current.scrollLeft = 0;
+        if (!this.rm && this.contentRef.current) {
+          this.contentRef.current.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.22,.61,.36,1)' });
+        }
+        this.setupMotion(false);
+      });
+    }
+  }
+
+  contentTop() {
+    const h = this.headerRef.current;
+    return h ? h.offsetTop + h.offsetHeight : 0;
+  }
+
+  setupMotion(initial) {
+    const root = this.contentRef.current;
+    if (!root) return;
+    root.querySelectorAll('[data-glow]').forEach(el => {
+      if (el._glow || this.rm) return;
+      el._glow = el.animate([
+        { boxShadow: '0 0 0 0 rgba(184,146,79,0), 0 10px 24px -14px rgba(184,146,79,.25)' },
+        { boxShadow: '0 0 0 3px rgba(184,146,79,.18), 0 12px 38px -8px rgba(184,146,79,.55)' }
+      ], { duration: 4000, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' });
+    });
+    if (this.rm || !this.io) return;
+    this.io.disconnect();
+    const vh = window.innerHeight;
+    root.querySelectorAll('[data-reveal],[data-kb],[data-gauge]').forEach(el => {
+      const r = el.getBoundingClientRect();
+      const visible = r.top < vh && r.bottom > 0;
+      if (!initial && visible && !el.hasAttribute('data-gauge')) { el.style.opacity = ''; return; }
+      if (el.hasAttribute('data-gauge')) el.style.width = '0%';
+      else el.style.opacity = '0';
+      this.io.observe(el);
+    });
+  }
+
+  onIntersect = entries => {
+    let i = 0;
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      this.io.unobserve(el);
+      const delay = Math.min(i++, 6) * 55;
+      if (el.hasAttribute('data-gauge')) {
+        const w = el.getAttribute('data-pct');
+        el.style.width = w;
+        el.animate([{ width: '0%' }, { width: w }], { duration: 1200, delay: 120 + delay, easing: 'cubic-bezier(.25,.8,.25,1)', fill: 'backwards' });
+      } else if (el.hasAttribute('data-kb')) {
+        el.style.opacity = '';
+        el.animate([
+          { opacity: 0, transform: 'scale(1.15)' },
+          { opacity: 1, offset: .18 },
+          { opacity: 1, transform: 'scale(1)' }
+        ], { duration: 6000, easing: 'cubic-bezier(.2,.6,.3,1)' });
+      } else {
+        el.style.opacity = '';
+        el.animate([{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 550, delay, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'backwards' });
+      }
+    });
+  };
+
+  barH() { return this.barRef.current ? this.barRef.current.offsetHeight : 0; }
+
+  spy() {
+    const root = this.contentRef.current;
+    if (!root) return;
+    const secs = root.querySelectorAll('[data-section]');
+    if (!secs.length) return;
+    const lim = this.barH() + 28;
+    let cur = secs[0].id;
+    secs.forEach(s => { if (s.getBoundingClientRect().top - lim <= 0) cur = s.id; });
+    if (cur !== this.state.active) {
+      this.setState({ active: cur });
+      const row = this.chipRowRef.current;
+      const chip = row && row.querySelector('[data-chip="' + cur + '"]');
+      if (chip) row.scrollTo({ left: Math.max(0, chip.offsetLeft - 16), behavior: this.rm ? 'auto' : 'smooth' });
+    }
+  }
+
+  goTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - this.barH() - 14;
+    window.scrollTo({ top: y, behavior: this.rm ? 'auto' : 'smooth' });
+  }
+
+  setTab(tab) {
+    if (tab === this.state.tab || !DATA[tab]) return;
+    this.setState({ tab, active: DATA[tab][0].id });
+  }
+
+  wa(text) {
+    const n = String(this.props.whatsappNumber ?? '').replace(/\D/g, '');
+    return 'https://wa.me/' + n + (text ? '?text=' + encodeURIComponent(text) : '');
+  }
+
+  isOpen(sid, gi, ii) {
+    const d = this.state.detail;
+    return !!d && d.sid === sid && d.gi === gi && d.ii === ii;
+  }
+
+  buildDetail(sec, it, showMarks) {
+    const raw = COMPO[sec.id + ':' + it.name] || COMPO[it.name];
+    const hasIng = it.ing && it.ing.length;
+    const compo = hasIng ? it.ing : raw ? raw.split(', ').map((x, i) => i ? x : cap(x)) : [];
+    return {
+      slot: 'item-' + sec.id + '-' + slug(it.name), photoLabel: 'Photo : ' + it.name,
+      compo, hasCompo: compo.length > 0, noCompo: compo.length === 0,
+      serve: SERVE[sec.id] || 'À préciser.',
+      showDraft: (this.props.showDraftNote ?? true) && (!hasIng || !!SERVE[sec.id])
+    };
+  }
+
+  renderVals() {
+    const { tab, live } = this.state;
+    const showMarks = this.props.showConfirmMarks ?? true;
+    const list = DATA[tab];
+    const active = this.state.active && list.some(s => s.id === this.state.active) ? this.state.active : list[0].id;
+
+    const sections = list.map(s => {
+      const kind = s.kind || 'list';
+      const groups = s.groups || (s.items ? [{ items: s.items }] : []);
+      return {
+        id: s.id, title: s.title, note: s.note || '', hasNote: !!s.note,
+        hasBanner: !!s.photo, photo: s.photo || '', slot: 'banner-' + s.id,
+        dual: !!s.dual, hasLive: !!s.live,
+        isList: kind === 'list', isOrigins: kind === 'origins', isAccessories: kind === 'accessories', isEvents: kind === 'events', isEmpty: kind === 'empty',
+        priceGroups: (s.priceGroups || []).map(pg => ({
+          names: pg.names.join('  ·  '),
+          price: fmt(pg.price),
+          hasLive: !!s.live, livePrice: s.live ? fmt(pg.price + 500) : ''
+        })),
+        groups: groups.map((g, gi) => ({
+          label: g.label || '', hasLabel: !!g.label,
+          items: g.items.map((it, ii) => Object.assign(this.isOpen(s.id, gi, ii) ? { expanded: true, ariaExp: 'true', d: this.buildDetail(s, it, showMarks) } : { expanded: false, ariaExp: 'false', d: {} }, it.dual ? {
+            open: e => this.openDetail(s.id, gi, ii, e && e.currentTarget),
+            name: it.name, dual: true, single: false, hasIng: false, ing: [],
+            maison: it.maison == null ? '—' : fmt(it.maison), origine: it.origine == null ? '—' : fmt(it.origine)
+          } : {
+            open: e => this.openDetail(s.id, gi, ii, e && e.currentTarget),
+            name: it.name, dual: false, single: true, ing: it.ing, hasIng: it.ing.length > 0,
+            price: fmt(it.price), mark: it.confirm && showMarks
+          }))
+        }))
+      };
+    });
+
+    return {
+      headerRef: this.headerRef, logoRef: this.logoRef, barRef: this.barRef, chipRowRef: this.chipRowRef, contentRef: this.contentRef,
+      tabs: TABS.map(t => ({
+        label: t.label, select: () => this.setTab(t.id),
+        color: t.id === tab ? '#1E5B3E' : '#6F6A5C', line: t.id === tab ? '#1E5B3E' : 'transparent'
+      })),
+      chips: list.map(s => ({
+        id: s.id, label: s.chip, go: () => { this.setState({ active: s.id }); this.goTo(s.id); },
+        bg: s.id === active ? '#1E5B3E' : '#F2ECDF', fg: s.id === active ? '#FFFFFF' : '#1B3A2A', border: s.id === active ? '#1E5B3E' : '#E4DCCB'
+      })),
+      isCafe: tab === 'cafe', isBoutique: tab === 'boutique', isResto: tab === 'resto',
+      live, liveAria: live ? 'true' : 'false',
+      toggleLive: () => this.setState(st => ({ live: !st.live })),
+      trackBg: live ? '#1E5B3E' : '#CFC8B8', knobX: live ? '22px' : '0px',
+      sections,
+      origins: ORIGINS.map(o => ({
+        name: o.name, badge: o.badge, isBio: o.badge === 'Bio', notBio: o.badge !== 'Bio',
+        notes: o.notes.split(', ').map((x, i) => i ? x : cap(x)), desc: o.desc,
+        gauges: ['Corps', 'Acidité', 'Intensité'].map((label, i) => ({ label, pct: (o.g[i] / 5 * 100) + '%', val: String(o.g[i]).replace('.', ',') })),
+        wa: this.wa('Bonjour, je souhaite commander le café ' + o.name + ' (grains ou moulu).')
+      })),
+      events: EVENTS.map(ev => {
+        const today = new Date().getDay() === ev.day;
+        return { slot: 'event-' + ev.day, photo: ev.photo, title: ev.title, dayShort: ev.dayShort, when: ev.when, desc: ev.desc, hasDesc: !!ev.desc,
+          isToday: today, todayLabel: ev.day === 2 || ev.day === 3 ? "Aujourd'hui" : 'Ce soir', border: today ? '#B8924F' : 'transparent' };
+      }),
+      alsoAvailable: ALSO,
+      accessories: ACCESSORIES.map((name, i) => ({ name, slot: 'acc-' + i })),
+      showMarks,
+      waHref: this.wa('Bonjour Biloa House,'),
+      address: this.props.address || 'Yaoundé · Adresse à fournir'
+    };
+  }
+}
+</script>
+</body>
+</html>
