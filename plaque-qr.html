@@ -37,7 +37,7 @@ a:hover{color:#15432D}
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;menuUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://thaddee12.github.io/menu-biloa-house/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;QR code&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;menuUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://menu-biloa-house.netlify.app/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;QR code&quot;}}">
 class Component extends DCLogic {
   state = { path: '', n: 29 };
 
@@ -47,7 +47,7 @@ class Component extends DCLogic {
   build() {
     if (!window.qrcode) { this.t = setTimeout(() => this.build(), 100); return; }
     const qr = window.qrcode(0, 'M');
-    qr.addData(this.props.menuUrl || 'https://thaddee12.github.io/menu-biloa-house/');
+    qr.addData(this.props.menuUrl || 'https://menu-biloa-house.netlify.app/');
     qr.make();
     const n = qr.getModuleCount();
     let d = '';
